@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog List</title>
+</head>
+<body>
+    <h1>All Blogs</h1>
+    <a href="{% url 'add_blog' %}">Add New Blog</a>
+    <ul>
+        {% for blog in blogs %}
+            <li>
+                <a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a>
+                (Category: {{ blog.category.name }})
+            </li>
+        {% empty %}
+            <li>No blogs found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

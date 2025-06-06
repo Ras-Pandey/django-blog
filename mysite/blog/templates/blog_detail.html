@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ blog.title }}</title>
+</head>
+<body>
+    <h1>{{ blog.title }}</h1>
+    <p><strong>Category:</strong>
+        <a href="{% url 'blog_list' %}?category={{ blog.category.id }}">{{ blog.category.name }}</a>
+    </p>
+    <p><strong>Tags:</strong>
+        {% for tag in blog.tags.all %}
+            <a href="{% url 'blog_list' %}?tag={{ tag.id }}">
+                <button>{{ tag.name }}</button>
+            </a>
+        {% empty %}
+            No tags.
+        {% endfor %}
+    </p>
+    <p>{{ blog.content }}</p>
+    <a href="{% url 'blog_list' %}">Back to Blog List</a>
+</body>
+</html>
